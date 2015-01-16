@@ -135,8 +135,7 @@ var RecaptchaOptions = {
                     self.private_key, req.remote_addr,
                 )
                 if not response.is_valid:
-                    self.log.warning('%s' % response.error_code)
-                    add_warning(req, 'reCAPTCHA incorrect. Please try again.')
+                    add_warning(req, 'reCAPTCHA incorrect. Please try again. %s' % response.error_code)
                     req.environ['REQUEST_METHOD'] = 'GET'
                     req.args.pop('password', None)
                     req.args.pop('password_confirm', None)
